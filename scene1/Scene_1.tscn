@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6kd8q1sswsln"]
+
+[ext_resource type="Texture2D" uid="uid://5r2kcwpoddho" path="res://scene1/image/sleep.png" id="1_ppeqc"]
+[ext_resource type="Script" uid="uid://bbijeywh5bgfh" path="res://scene1/script/background_scaler.gd" id="2_background"]
+[ext_resource type="Texture2D" uid="uid://cnmb2c4qrmyv4" path="res://scene1/image/clock.png" id="3_clock"]
+[ext_resource type="Script" uid="uid://duxlld14aobr6" path="res://scene1/script/start_button.gd" id="4_start_button"]
+[ext_resource type="Script" uid="uid://jykpng6yn0dy" path="res://scene1/script/ok_button.gd" id="5_ok_button"]
+[ext_resource type="AudioStream" uid="uid://dgul16j03ml0b" path="res://scene1/sound/Alarm-Clock-Short-chosic.com_.mp3" id="5_poq04"]
+[ext_resource type="Script" uid="uid://cckcl3jgh6quh" path="res://scene1/script/clock.gd" id="7_clock_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_clock"]
+radius = 192.58505
+
+[node name="Scene1" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(969, 542.99994)
+scale = Vector2(1.3678977, 1.3984374)
+texture = ExtResource("1_ppeqc")
+script = ExtResource("2_background")
+
+[node name="Clock" type="Area2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("7_clock_script")
+
+[node name="Sprite" type="Sprite2D" parent="Clock"]
+position = Vector2(-647.99994, -55.99994)
+scale = Vector2(0.5078125, 0.484375)
+texture = ExtResource("3_clock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clock"]
+position = Vector2(-650, -50)
+shape = SubResource("CircleShape2D_clock")
+
+[node name="AlarmSound" type="AudioStreamPlayer" parent="Clock"]
+stream = ExtResource("5_poq04")
+volume_db = 24.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="StartButton" type="Button" parent="UI"]
+offset_left = 760.0
+offset_top = 800.0
+offset_right = 1160.0
+offset_bottom = 920.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.6, 0.1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 48
+text = "BẮT ĐẦU GAME"
+script = ExtResource("4_start_button")
+
+[node name="TutorialPanel" type="Panel" parent="UI"]
+visible = false
+offset_left = 560.0
+offset_top = 340.0
+offset_right = 1360.0
+offset_bottom = 740.0
+
+[node name="Background" type="ColorRect" parent="UI/TutorialPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.15, 0.95)
+
+[node name="Title" type="Label" parent="UI/TutorialPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 42
+text = "HƯỚNG DẪN CHƠI GAME"
+horizontal_alignment = 1
+
+[node name="Instruction" type="Label" parent="UI/TutorialPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -50.0
+offset_right = 350.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "Bấm vào vật phẩm để giải đố"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="OkButton" type="Button" parent="UI/TutorialPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.1, 0.8, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.2, 1, 0.2, 1)
+theme_override_font_sizes/font_size = 36
+text = "OK"
+script = ExtResource("5_ok_button")
+
+[node name="NotificationLabel" type="Label" parent="UI"]
+visible = false
+offset_left = 460.0
+offset_top = 100.0
+offset_right = 1460.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "Hãy đánh thức nhân vật dậy!"
+horizontal_alignment = 1
+vertical_alignment = 1

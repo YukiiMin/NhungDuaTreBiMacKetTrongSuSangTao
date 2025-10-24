@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://blccjlcocsvqf"]
+
+[ext_resource type="Texture2D" uid="uid://c57kf6b7y6g63" path="res://scene2/image/Nosleep.png" id="1_n8voy"]
+
+[node name="Scene2" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959, 542)
+scale = Vector2(1.2434896, 1.046875)
+texture = ExtResource("1_n8voy")
