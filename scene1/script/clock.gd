@@ -21,6 +21,10 @@ func _on_input_event(_viewport, event, _shape_idx):
 			# Tắt âm thanh đồng hồ
 			stop_alarm()
 			print("Đã tắt âm thanh đồng hồ!")
+			
+			# Chuyển sang scene 2
+			await get_tree().create_timer(0.3).timeout  # Delay ngắn để mượt hơn
+			get_tree().change_scene_to_file("res://scene2/Scene_2.tscn")
 
 func _on_mouse_entered():
 	# Thay đổi con trỏ chuột khi di vào vùng đồng hồ
