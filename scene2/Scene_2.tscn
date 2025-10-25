@@ -1,10 +1,212 @@
-[gd_scene load_steps=2 format=3 uid="uid://blccjlcocsvqf"]
+[gd_scene load_steps=10 format=3 uid="uid://blccjlcocsvqf"]
 
 [ext_resource type="Texture2D" uid="uid://c57kf6b7y6g63" path="res://scene2/image/Nosleep.png" id="1_n8voy"]
+[ext_resource type="Texture2D" uid="uid://c1cdk4da1eply" path="res://scene2/image/clock.png" id="3_d088c"]
+[ext_resource type="Texture2D" uid="uid://ccqerabp8pcmw" path="res://scene2/image/calendar1-removebg-preview.png" id="4_34l48"]
+[ext_resource type="Texture2D" uid="uid://dtkg0umuh4nfj" path="res://scene2/image/calendar.png" id="4_d088c"]
+[ext_resource type="Script" uid="uid://ds6f7gjc2tsj6" path="res://scene2/script/text_panel.gd" id="4_text_panel"]
+[ext_resource type="Texture2D" uid="uid://csgmxmdfobho6" path="res://scene2/image/image-removebg-preview.png" id="5_mjovc"]
+[ext_resource type="Script" uid="uid://dc6vaeb4gwwkj" path="res://scene2/script/calendar.gd" id="6_calendar_script"]
+[ext_resource type="Script" uid="uid://bkrmgbeppd8ig" path="res://scene2/script/prepare_button.gd" id="8_prepare_button"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_calendar"]
+size = Vector2(205, 187)
 
 [node name="Scene2" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(959, 542)
-scale = Vector2(1.2434896, 1.046875)
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(996.99994, 549.00006)
+scale = Vector2(1.3216145, 1.0683594)
 texture = ExtResource("1_n8voy")
+
+[node name="Clock" type="Sprite2D" parent="."]
+position = Vector2(134, 484)
+scale = Vector2(0.5078125, 0.4609375)
+texture = ExtResource("3_d088c")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TextPanel" type="Panel" parent="UI"]
+offset_left = 116.0
+offset_top = 696.0
+offset_right = 1900.0
+offset_bottom = 1036.0
+script = ExtResource("4_text_panel")
+
+[node name="BlurBackground" type="ColorRect" parent="UI/TextPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 6.0
+offset_right = -4.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.75)
+
+[node name="TextLabel" type="Label" parent="UI/TextPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 2.0
+offset_right = -46.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 32
+text = "Trời ơi… hôm nay là ngày mới rồi sao…Ánh sáng chiếu vào mắt chói quá… ước gì được ngủ thêm năm phút nữa."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueButton" type="Button" parent="UI/TextPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 654.0
+offset_top = -75.0
+offset_right = 854.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_colors/font_hover_color = Color(0.3, 0.6, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Continue"
+flat = true
+
+[node name="NotificationLabel" type="Label" parent="UI"]
+visible = false
+offset_left = 513.0
+offset_top = 3.0
+offset_right = 1513.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "Giúp nhân vật tìm lịch trình ngày hôm nay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CalendarPopup" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CalendarImage" type="Sprite2D" parent="UI/CalendarPopup"]
+position = Vector2(952.5, 487.00003)
+scale = Vector2(2.4623337, 2.3360434)
+texture = ExtResource("4_34l48")
+
+[node name="CloseButton" type="Button" parent="UI/CalendarPopup"]
+layout_mode = 0
+offset_left = 1750.0
+offset_top = 50.0
+offset_right = 1850.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "✕"
+flat = true
+
+[node name="InstructionLabel" type="Label" parent="UI/CalendarPopup"]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 543.0
+offset_right = 940.0
+offset_bottom = 580.0
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Họp nhóm "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArrowIcon" type="Sprite2D" parent="UI/CalendarPopup"]
+position = Vector2(756, 579)
+scale = Vector2(1.0979999, 0.33950004)
+texture = ExtResource("5_mjovc")
+
+[node name="AfterCalendarPanel" type="Panel" parent="UI"]
+visible = false
+offset_left = 116.0
+offset_top = 696.0
+offset_right = 1900.0
+offset_bottom = 1036.0
+
+[node name="BlurBackground" type="ColorRect" parent="UI/AfterCalendarPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.75)
+
+[node name="TextLabel" type="Label" parent="UI/AfterCalendarPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 32
+text = "Thì ra hôm nay mình có buổi họp nhóm ở thư viện làm đồ án. Mình phải nhanh chuẩn bị thôi"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PrepareButton" type="Button" parent="UI/AfterCalendarPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 80.0
+offset_right = 150.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.6, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.05, 0.3, 0.6, 1)
+theme_override_colors/font_hover_color = Color(0.1, 0.4, 0.8, 1)
+theme_override_font_sizes/font_size = 32
+text = "Chuẩn bị đi họp lớp"
+flat = true
+script = ExtResource("8_prepare_button")
+
+[node name="Calendar" type="Area2D" parent="."]
+position = Vector2(1001, 114)
+script = ExtResource("6_calendar_script")
+
+[node name="Sprite" type="Sprite2D" parent="Calendar"]
+position = Vector2(-4, 105)
+scale = Vector2(0.36132813, 0.328125)
+texture = ExtResource("4_d088c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Calendar"]
+position = Vector2(-9, 109)
+shape = SubResource("RectangleShape2D_calendar")
